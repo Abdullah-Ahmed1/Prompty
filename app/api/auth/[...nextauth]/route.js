@@ -14,18 +14,20 @@ const handler = NextAuth({
     callbacks : {
         async session({ session }){
             try{
+                
                 const sessionUser = await User.findOne({
                     email : session.user.email
                 })
                 session.user.id = sessionUser._id.toString()
-    
                 return session
             }catch(err){
                 console.log(err)
             }
         },
         async signIn({profile}){
+            console.log("reachedddddddddddddd sign In")
             try{
+                await connectToDB();
                 const userExists = await User.findOne({
                     email:profile.email
                 }) 
@@ -36,8 +38,10 @@ const handler = NextAuth({
                         image :profile.picture
                     })
                 }
+                return true
             }catch(err){
                 console.log(err)
+                return false
             }
             await connectToDB();
         }

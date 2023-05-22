@@ -10,9 +10,9 @@ const Nav = () => {
     const [toggleDropdown,setToggleDropdown] = useState(false)
     const {data:session} = useSession();
     // const isUserLoggedIn = true
-    const signout = ()=>{
-        console.log("reached")
-    }
+    // const signout = ()=>{
+    //     console.log("reached")
+    // }
 
     useEffect(()=>{
         const setProviders1 = async()=>{
@@ -37,12 +37,12 @@ const Nav = () => {
         {/* Mobile Navigation */}
         <div className="sm:flex hidden">
             {
-                session?.user?(
+                session?.user ? (
                     <div className="flex gap-3 md:gap-5">
                         <Link href='/create-prompt' className="black_btn">
                             Create Post
                         </Link>
-                        <button type="button" onClick={signout} className="outline_btn">
+                        <button type="button" onClick={signOut} className="outline_btn">
                             Sign Out
                         </button>
                         <Link href='/profile'>
@@ -76,7 +76,7 @@ const Nav = () => {
         {/* MObile Navigation */}
         <div className="sm:hidden flex relative">
             {
-                session ? (
+                session?.user ? (
                     <div className="flex">
                         <Image
                                 src={session?.user.image}
