@@ -43,7 +43,7 @@ const handler = NextAuth({
                 console.log(err)
                 return false
             }
-            await connectToDB();
+            // await connectToDB();
         }
     }
 
